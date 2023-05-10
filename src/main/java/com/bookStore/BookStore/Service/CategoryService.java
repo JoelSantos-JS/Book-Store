@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.bookStore.BookStore.Repository.CategoryRepository;
 import com.bookStore.BookStore.Service.exceptions.ObjectNotFound;
+import com.bookStore.BookStore.dto.CategoryDto;
 import com.bookStore.BookStore.entities.Category;
+
+import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 @Service
 public class CategoryService {
@@ -33,6 +36,24 @@ public class CategoryService {
         category.setId(null);
 
         return categoryRepository.save(category);
+    }
+
+    public Category update(Integer id, CategoryDto category) {
+        Category entity = findById(id);
+
+        entity.setName(category.getName());
+        entity.setDescription(category.getDescription());
+
+        return categoryRepository.save(entity);
+
+    }
+
+    public Category delete(Integer id) {
+        Category entity = findById(id);
+
+        categoryRepository.delete(entity);
+
+        return entity;
     }
 
 }
