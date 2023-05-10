@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookStore.BookStore.Repository.BookRepository;
+import com.bookStore.BookStore.Service.exceptions.DateIntegrityViolention;
 import com.bookStore.BookStore.Service.exceptions.ObjectNotFound;
 import com.bookStore.BookStore.dto.BookDto;
 import com.bookStore.BookStore.entities.Book;
@@ -42,6 +43,18 @@ public class BookService {
         book.setText(book.getText());
 
         return bookRepository.save(book);
+    }
+
+    public Book delete(Integer id) {
+        Book book = findById(id);
+
+        try {
+            bookRepository.delete(book);
+        } catch (DateIntegrityViolention e) {
+            throw new DateIntegrityViolention("Can't delete a book with orders!");
+        }
+
+        return book;
     }
 
 }
