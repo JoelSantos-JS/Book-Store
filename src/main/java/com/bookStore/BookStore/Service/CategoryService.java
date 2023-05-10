@@ -1,5 +1,6 @@
 package com.bookStore.BookStore.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,4 +23,10 @@ public class CategoryService {
         return category.orElseThrow(() -> new ObjectNotFound("Object not found"));
 
     }
+
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
+
+    }
+
 }

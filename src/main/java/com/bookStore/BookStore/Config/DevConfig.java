@@ -14,7 +14,6 @@ public class DevConfig {
     @Autowired
     private DBService service;
 
-    @Bean
     public void instanciaDB() {
         this.service.instanciaDados();
     }
