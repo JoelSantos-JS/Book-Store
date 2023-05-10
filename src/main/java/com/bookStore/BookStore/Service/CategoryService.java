@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookStore.BookStore.Repository.CategoryRepository;
+import com.bookStore.BookStore.Service.exceptions.DateIntegrityViolention;
 import com.bookStore.BookStore.Service.exceptions.ObjectNotFound;
 import com.bookStore.BookStore.dto.CategoryDto;
 import com.bookStore.BookStore.entities.Category;
@@ -51,7 +52,12 @@ public class CategoryService {
     public Category delete(Integer id) {
         Category entity = findById(id);
 
-        categoryRepository.delete(entity);
+        try {
+            categoryRepository.delete(entity);
+        } catch (DateIntegrityViolention e) {
+            // TODO: handle exception
+            throw new DateIntegrityViolention("Can't delete a category with books");
+        }
 
         return entity;
     }
