@@ -11,12 +11,16 @@ import com.bookStore.BookStore.Service.exceptions.DateIntegrityViolention;
 import com.bookStore.BookStore.Service.exceptions.ObjectNotFound;
 import com.bookStore.BookStore.dto.BookDto;
 import com.bookStore.BookStore.entities.Book;
+import com.bookStore.BookStore.entities.Category;
 
 @Service
 public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private CategoryService CategoryService; // injetar o service
 
     // Method find a book by id
     public Book findById(Integer id) {
@@ -29,10 +33,17 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book create(Book bookDto) {
+    public Book create(Integer id_cat, Book bookDto) {
         bookDto.setId(null);
+        Category category = CategoryService.findById(id_cat); // inje
+        bookDto.setCategory(category);
 
         return bookRepository.save(bookDto);
+    }
+
+    public List<Book> findAllByCategory(Integer id) {
+        Category obj = CategoryService.findById(id); // injet
+        return obj.getBooks();
     }
 
     public Book update(Integer id, BookDto bookDto) {
@@ -40,7 +51,7 @@ public class BookService {
 
         book.setTitle(bookDto.getTitle());
         book.setAuthor(bookDto.getAuthor());
-        book.setText(book.getText());
+        book.setText(bookDto.getText());
 
         return bookRepository.save(book);
     }
