@@ -4,10 +4,16 @@ import java.io.Serializable;
 
 import com.bookStore.BookStore.entities.Category;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class CategoryDto implements Serializable {
 
     private Integer id;
+
+    @NotEmpty(message = "Name is required")
     private String name;
+
+    @NotEmpty(message = "Description is required")
     private String description;
 
     public CategoryDto() {

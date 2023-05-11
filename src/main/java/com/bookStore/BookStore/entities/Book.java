@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "tb_book")
@@ -19,8 +20,11 @@ public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "Campo obrigatário")
     private String title;
+    @NotEmpty(message = "Campo obrigatário")
     private String author;
+    @NotEmpty(message = "Campo obrigatário")
     private String text;
 
     @JsonIgnore

@@ -20,6 +20,8 @@ import com.bookStore.BookStore.Service.CategoryService;
 import com.bookStore.BookStore.dto.CategoryDto;
 import com.bookStore.BookStore.entities.Category;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/category")
 public class CategoryController {
@@ -45,7 +47,7 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> save(@RequestBody Category category) {
+    public ResponseEntity<Category> save(@Valid @RequestBody Category category) {
         category = categoryService.create(category);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(category.getId())
                 .toUri();
@@ -54,7 +56,7 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CategoryDto> update(@PathVariable Integer id, @RequestBody CategoryDto category) {
+    public ResponseEntity<CategoryDto> update(@Valid @PathVariable Integer id, @RequestBody CategoryDto category) {
         Category category2 = categoryService.update(id, category);
 
         return ResponseEntity.ok().body(new CategoryDto(category2));

@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import jakarta.validation.constraints.NotEmpty;
+
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {
@@ -18,7 +20,10 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotEmpty(message = "Name is required")
     private String name;
+    @NotEmpty(message = "Description is required")
     private String description;
 
     @OneToMany(mappedBy = "category")

@@ -22,6 +22,8 @@ import com.bookStore.BookStore.Service.BookService;
 import com.bookStore.BookStore.dto.BookDto;
 import com.bookStore.BookStore.entities.Book;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/book")
 public class BookController {
@@ -52,7 +54,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> create(@RequestParam(value = "category", defaultValue = "0") Integer id_cat,
+    public ResponseEntity<Book> create(@Valid @RequestParam(value = "category", defaultValue = "0") Integer id_cat,
             @RequestBody Book book) {
         book = bookService.create(id_cat, book);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/book/{id}").buildAndExpand(book.getId())
@@ -62,7 +64,7 @@ public class BookController {
     }
 
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<BookDto> update(@PathVariable Integer id, @RequestBody BookDto book) {
+    public ResponseEntity<BookDto> update(@Valid @PathVariable Integer id, @RequestBody BookDto book) {
         Book book2 = bookService.update(id, book);
 
         return ResponseEntity.ok().body(new BookDto(book2));

@@ -4,10 +4,18 @@ import java.io.Serializable;
 
 import com.bookStore.BookStore.entities.Book;
 
+import jakarta.validation.constraints.NotBlank;
+
 public class BookDto implements Serializable {
     private Integer id;
+
+    @NotBlank(message = "Title is mandatory")
     private String title;
+
+    @NotBlank(message = "Author is mandatory")
     private String author;
+
+    @NotBlank(message = "text is mandatory")
     private String text;
 
     public BookDto() {
