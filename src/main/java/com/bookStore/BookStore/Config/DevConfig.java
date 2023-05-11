@@ -8,12 +8,13 @@ import org.springframework.context.annotation.Profile;
 import com.bookStore.BookStore.Service.DBService;
 
 @Configuration
-@Profile("dev")
+@Profile("prod")
 public class DevConfig {
 
     @Autowired
     private DBService service;
 
+    @Bean
     public void instanciaDB() {
         this.service.instanciaDados();
     }
