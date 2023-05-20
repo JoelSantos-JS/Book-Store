@@ -12,8 +12,6 @@ import com.bookStore.BookStore.Service.exceptions.ObjectNotFound;
 import com.bookStore.BookStore.dto.CategoryDto;
 import com.bookStore.BookStore.entities.Category;
 
-import jakarta.persistence.criteria.CriteriaBuilder.In;
-
 @Service
 public class CategoryService {
 
@@ -55,7 +53,6 @@ public class CategoryService {
         try {
             categoryRepository.delete(entity);
         } catch (DateIntegrityViolention e) {
-            // TODO: handle exception
             throw new DateIntegrityViolention("Can't delete a category with books");
         }
 
