@@ -1,4 +1,4 @@
-package com.bookStore.BookStore.Repository;
+package com.bookStore.BookStore.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

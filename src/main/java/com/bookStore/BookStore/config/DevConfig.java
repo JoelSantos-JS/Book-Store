@@ -1,22 +1,22 @@
-package com.bookStore.BookStore.Config;
+package com.bookStore.BookStore.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.bookStore.BookStore.Service.DBService;
+import com.bookStore.BookStore.services.DBService;
 
 @Configuration
-@Profile("test")
-public class TestConfig {
+@Profile("prod")
+public class DevConfig {
 
     @Autowired
-    private DBService dbService;
+    private DBService service;
 
     @Bean
     public void instanciaDB() {
-        this.dbService.instanciaDados();
+        this.service.instanciaDados();
     }
 
 }

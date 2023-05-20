@@ -1,4 +1,4 @@
-package com.bookStore.BookStore.Service.exceptions;
+package com.bookStore.BookStore.services.exceptions;
 
 public class DateIntegrityViolention extends RuntimeException {
 
