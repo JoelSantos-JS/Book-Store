@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.function.ServerRequest;
 
-import com.bookStore.BookStore.Service.exceptions.DateIntegrityViolention;
-import com.bookStore.BookStore.Service.exceptions.ObjectNotFound;
+import com.bookStore.BookStore.services.exceptions.DateIntegrityViolention;
+import com.bookStore.BookStore.services.exceptions.ObjectNotFound;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

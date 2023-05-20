@@ -1,4 +1,4 @@
-package com.bookStore.BookStore.Controller;
+package com.bookStore.BookStore.controllers;
 
 import java.net.URI;
 import java.util.List;
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.bookStore.BookStore.Service.CategoryService;
 import com.bookStore.BookStore.dto.CategoryDto;
 import com.bookStore.BookStore.entities.Category;
+import com.bookStore.BookStore.services.CategoryService;
 
 import jakarta.validation.Valid;
 

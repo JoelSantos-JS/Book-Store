@@ -1,14 +1,14 @@
-package com.bookStore.BookStore.Service;
+package com.bookStore.BookStore.services;
 
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookStore.BookStore.Repository.BookRepository;
-import com.bookStore.BookStore.Repository.CategoryRepository;
 import com.bookStore.BookStore.entities.Book;
 import com.bookStore.BookStore.entities.Category;
+import com.bookStore.BookStore.repositories.BookRepository;
+import com.bookStore.BookStore.repositories.CategoryRepository;
 
 @Service
 public class DBService {

@@ -1,4 +1,4 @@
-package com.bookStore.BookStore.Service;
+package com.bookStore.BookStore.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,13 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bookStore.BookStore.Repository.CategoryRepository;
-import com.bookStore.BookStore.Service.exceptions.DateIntegrityViolention;
-import com.bookStore.BookStore.Service.exceptions.ObjectNotFound;
 import com.bookStore.BookStore.dto.CategoryDto;
 import com.bookStore.BookStore.entities.Category;
-
-import jakarta.persistence.criteria.CriteriaBuilder.In;
+import com.bookStore.BookStore.repositories.CategoryRepository;
+import com.bookStore.BookStore.services.exceptions.DateIntegrityViolention;
+import com.bookStore.BookStore.services.exceptions.ObjectNotFound;
 
 @Service
 public class CategoryService {
@@ -55,7 +53,6 @@ public class CategoryService {
         try {
             categoryRepository.delete(entity);
         } catch (DateIntegrityViolention e) {
-            // TODO: handle exception
             throw new DateIntegrityViolention("Can't delete a category with books");
         }
 
